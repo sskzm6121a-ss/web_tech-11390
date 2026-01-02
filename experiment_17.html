@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Event Listener Demo 2025</title>
+    <style>
+        .is-hidden { display: none !important; }
+        #box { width: 200px; padding: 20px; background: #3498db; color: white; margin: 10px 0; }
+        .disabled { opacity: 0.5; pointer-events: none; }
+    </style>
+</head>
+<body>
+
+    <button id="toggleBtn">Click to Toggle</button>
+    <button id="disableBtn">Remove Hover & Keyboard Listeners</button>
+    <p>Try: <strong>Click</strong> button, <strong>Hover</strong> box, or press <strong>"T"</strong> key.</p>
+    
+    <div id="box">Target Element</div>
+
+    <script>
+        const box = document.getElementById('box');
+        const toggleBtn = document.getElementById('toggleBtn');
+        const disableBtn = document.getElementById('disableBtn');
+        const toggleContent = (event) => {
+            console.log(`Event Triggered: ${event.type}`); 
+            box.classList.toggle('is-hidden');
+        };
+        const handleKeyPress = (event) => {
+            if (event.key.toLowerCase() === 't') { 
+                toggleContent(event);
+            }
+        };
+        toggleBtn.addEventListener('click', toggleContent);
+        box.addEventListener('mouseenter', toggleContent);
+        window.addEventListener('keydown', handleKeyPress);
+        disableBtn.addEventListener('click', () => {
+            box.removeEventListener('mouseenter', toggleContent);
+            window.removeEventListener('keydown', handleKeyPress);
+            
+            disableBtn.textContent = "Hover/Keyboard Disabled";
+            disableBtn.classList.add('disabled');
+            alert("Mouseover and Keyboard listeners removed.");
+        });
+    </script>
+</body>
+</html>

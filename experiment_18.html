@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM Manipulation 2025</title>
+    <style>
+        .box { padding: 10px; margin: 5px; border: 1px solid #ccc; background: #f9f9f9; display: flex; justify-content: space-between; }
+        .highlight { background-color: #e1f5fe; border-color: #03a9f4; }
+    </style>
+</head>
+<body>
+    <h2>Dynamic List Manager</h2>
+    <input type="text" id="itemInput" placeholder="Enter item text...">
+    <button id="addBtn">Create & Append</button>
+    
+    <div id="container">
+    </div>
+
+    <script>
+        const container = document.getElementById('container');
+        const input = document.getElementById('itemInput');
+        const addBtn = document.getElementById('addBtn');
+
+        addBtn.addEventListener('click', () => {
+            const text = input.value.trim();
+            if (!text) return;
+            const newItem = document.createElement('div');
+            newItem.className = 'box';
+            newItem.textContent = text;
+            newItem.setAttribute('data-status', 'new');
+            const deleteBtn = document.createElement('button');
+            deleteBtn.textContent = 'Remove';
+            deleteBtn.onclick = () => newItem.remove(); 
+
+            const modifyBtn = document.createElement('button');
+            modifyBtn.textContent = 'Highlight';
+            modifyBtn.onclick = () => {
+                newItem.classList.toggle('highlight');
+                newItem.textContent = newItem.classList.contains('highlight') ? 
+                    `${text} (Updated!)` : text;
+                newItem.appendChild(modifyBtn); 
+                newItem.appendChild(deleteBtn);
+            };
+            newItem.append(modifyBtn, deleteBtn);
+            container.append(newItem);
+
+            input.value = ''; 
+        });
+    </script>
+</body>
+</html>

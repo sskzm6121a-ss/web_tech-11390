@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>Form Validation with Console Output</title>
+
+<style>
+    body {
+        font-family: "Poppins", sans-serif;
+        background: #eef2ff;
+        display: flex;
+        justify-content: center;
+        margin-top: 40px;
+    }
+
+    .box {
+        width: 400px;
+        padding: 25px;
+        border-radius: 18px;
+        background: linear-gradient(135deg, #ffe2ec, #e5f3ff);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    h2 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 18px;
+    }
+
+    input {
+        width: 95%;
+        padding: 10px;
+        font-size: 15px;
+        border-radius: 10px;
+        border: 1px solid #b9a8ff;
+        margin-bottom: 5px;
+    }
+
+    .error {
+        color: red;
+        height: 16px;
+        font-size: 13px;
+        margin-bottom: 8px;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        background: #9d7ff7;
+        color: white;
+        font-size: 16px;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background: #8665f0;
+    }
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+    <h2>Validate Your Details</h2>
+
+    <form id="myForm" onsubmit="return validateForm()">
+
+        <input type="text" id="username" placeholder="Enter your name" oninput="clearError('nameErr')">
+        <div id="nameErr" class="error"></div>
+
+        <input type="email" id="useremail" placeholder="Enter your email" oninput="clearError('emailErr')">
+        <div id="emailErr" class="error"></div>
+
+        <input type="password" id="userpass" placeholder="Enter password" oninput="clearError('passErr')">
+        <div id="passErr" class="error"></div>
+
+        <button type="submit">Submit</button>
+
+    </form>
+</div>
+
+<script>
+
+function validateForm() {
+    let name = document.getElementById("username").value.trim();
+    let email = document.getElementById("useremail").value.trim();
+    let pass = document.getElementById("userpass").value.trim();
+
+    let valid = true;
+    if (name.length < 3) {
+        document.getElementById("nameErr").innerText = "Name must be at least 3 characters!";
+        console.log("Name Error: Too short");
+        valid = false;
+    }
+
+    if (!email.includes("@") || !email.includes(".")) {
+        document.getElementById("emailErr").innerText = "Enter valid email!";
+        console.log("Email Error: Invalid email format");
+        valid = false;
+    }
+
+    if (pass.length < 6) {
+        document.getElementById("passErr").innerText = "Password must be 6+ characters!";
+        console.log("Password Error: Too short");
+        valid = false;
+    }
+
+    if (valid) {
+        alert("Form Submitted Successfully!");
+        console.log("Form Submitted Successfully:", { name, email, pass });
+        return true;
+    } else {
+        alert("Fix the errors before submitting!");
+        console.log("Form submission failed due to errors.");
+        return false;
+    }
+}
+
+function clearError(id) {
+    document.getElementById(id).innerText = "";
+    console.log("Cleared error:", id);
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toggle Elements 2025</title>
+    <style>
+        
+        .is-hidden {
+            display: none !important;
+        }
+
+        
+        #contentBox {
+            padding: 20px;
+            background-color: #f0f0f0;
+            border: 2px solid #b40c6e;
+            margin-top: 10px;
+            transition: opacity 0.3s ease; 
+        }
+
+        button {
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>JavaScript Class Toggle Demo</h2>
+    
+    <button id="toggleBtn">Toggle Content Visibility</button>
+    <div id="contentBox">
+        <p>This element is being toggled using JavaScript and a CSS class.</p>
+    </div>
+
+    <script>
+        const btn = document.getElementById('toggleBtn');
+        const content = document.getElementById('contentBox');
+        btn.addEventListener('click', () => {
+            content.classList.toggle('is-hidden');
+            const isVisible = !content.classList.contains('is-hidden');
+            btn.textContent = isVisible ? "Hide Content" : "Show Content";
+        });
+    </script>
+
+</body>
+</html>

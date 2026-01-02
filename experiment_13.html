@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>JS Functions & Scope Demo</title>
+
+<style>
+    body {
+        font-family: "Poppins", sans-serif;
+        background: #f8f6ff;
+        display: flex;
+        justify-content: center;
+        margin-top: 40px;
+    }
+
+    .box {
+        width: 360px;
+        background: linear-gradient(135deg, #ffe7f0, #e8f6ff);
+        padding: 25px;
+        border-radius: 20px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    h2 {
+        text-align: center;
+        color: #333;
+    }
+
+    input {
+        width: 95%;
+        padding: 10px;
+        margin: 8px 0;
+        border-radius: 10px;
+        border: 1px solid #c8b6ff;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        margin-top: 10px;
+        border: none;
+        border-radius: 12px;
+        background: #b388eb;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background: #9c6fe9;
+    }
+
+    .result {
+        margin-top: 15px;
+        padding: 12px;
+        border-radius: 10px;
+        background: white;
+        min-height: 40px;
+        text-align: center;
+        border: 1px solid #d0c4ff;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="box">
+    <h2>JS Functions + Scope</h2>
+
+    <input type="number" id="num1" placeholder="Enter first number">
+    <input type="number" id="num2" placeholder="Enter second number">
+
+    <button onclick="calculate()">Add Numbers</button>
+    <button onclick="checkScope()">Show var, let, const Scope</button>
+
+    <div class="result" id="output">Result will appear here...</div>
+</div>
+
+
+<script>
+
+
+function addNumbers(x, y) {
+    return x + y;
+}
+
+
+function scopeDemo() {
+    console.log("----- SCOPE DEMO START -----");
+
+    var a = "I am var (function scoped)";
+    let b = "I am let (block scoped)";
+    const c = "I am const (cannot change)";
+
+    console.log(a);
+    console.log(b);
+    console.log(c);
+
+    {
+        var a = "var changed inside block";
+        let b = "let inside block";
+        console.log("Inside Block:", a);
+        console.log("Inside Block:", b);
+    }
+
+    console.log("Outside Block var:", a);
+    
+    console.log("----- SCOPE DEMO END -----");
+    return "Check console for var/let/const demo!";
+}
+
+function calculate() {
+    let n1 = Number(document.getElementById("num1").value);
+    let n2 = Number(document.getElementById("num2").value);
+
+    let result = addNumbers(n1, n2);
+
+    document.getElementById("output").innerText = "Sum = " + result;
+    console.log("Sum =", result);
+}
+
+function checkScope() {
+    let msg = scopeDemo();
+    document.getElementById("output").innerText = msg;
+}
+
+</script>
+
+</body>
+</html>

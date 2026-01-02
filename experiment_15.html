@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulation Demo</title>
+</head>
+<body>
+
+    <div id="targetElement">
+        Original content.
+    </div>
+
+    <button onclick="manipulateDOM()">Click to manipulate the DOM</button>
+
+    <script>
+        function manipulateDOM() {
+            const elementById = document.getElementById('targetElement');
+            const elementBySelector = document.querySelector('#targetElement');
+            elementBySelector.innerHTML = 'Content has been **updated** using `querySelector()` and `innerHTML`!';
+            elementById.style.color = 'brown';
+            elementById.style.fontWeight = 'bold';
+        }
+    </script>
+
+</body>
+</html>
